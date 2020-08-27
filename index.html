@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>First Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+    // $(document).ready(function(){
+
+      function showData()
+      {
+
+        console.log("Function called");
+       
+        // alert(x1);
+          // $.get('/get_hello',function(data,status){
+          //    alert('data = '+ data['value']+ '\nStatus = '+ status);
+            
+          // });
+        var objectDataString = {
+            value1 : document.getElementById('x1').value,
+            value2 : document.getElementById('x2').value,
+            value3 : document.getElementById('x3').value,
+            value4 : document.getElementById('x4').value,
+            value5 : document.getElementById('x5').value,
+    
+        };
+       $.ajax({
+                  type: "POST",
+                  url: "/get_hello",
+                  contentType: "application/json",
+                  data: JSON.stringify(objectDataString),
+                  success: function (data) {
+                    document.getElementById("rslt").innerHTML=String(data['result']);
+                    console.log("Result recieved");
+                  },
+                  error: function () {
+                  alert('Error');
+                  }
+          });
+    }
+      //  $("clck").click(showData);
+    // });
+  </script>
+</head>
+<body>
+
+  <div class="container">
+    <h1> <strong>Welcome to the webpage<strong> </h1>
+    <p> Here you can perform regression on your data. Just input the data below to get your output.<p>
+  </div>
+  <hr>
+  <div>
+    <a href="/logout">Logout</a>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="control-label col-sm-1" for="usr">X1:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="x1" placeholder="Enter X1">
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="control-label col-sm-1" for="pwd">X2:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="x2" placeholder="Enter X2">
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="control-label col-sm-1" for="pwd">X3:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="x3" placeholder="Enter X3">
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="control-label col-sm-1" for="pwd">X4:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="x4" placeholder="Enter X4">
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="control-label col-sm-1" for="pwd">X5:</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="x5" placeholder="Enter X5">
+        </div>
+      </div>  
+  
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+          <button type="submit" class="btn btn-default" onclick="showData()">Submit</button>
+        </div>
+      </div>
+      <br>
+      <br>
+      
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="container">
+    
+    <p> The result of the linear regression is: </p>
+
+    <p id="rslt"> 
+        XXXX
+    </p>
+  </div>
+</body>
+
+</html>
